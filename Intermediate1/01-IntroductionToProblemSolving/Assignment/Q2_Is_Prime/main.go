@@ -1,3 +1,9 @@
+// Step 1 - Examples - 10 -> Not Prime, 5 -> Prime
+// Step 2 - Utilitites - countFactors, check for prime
+// Step 3 - Ranges
+// Step 4 - Bruteforce
+// Step 5 - Observation
+// Step 6 - Edge Cases
 package main
 
 func main() {
@@ -6,20 +12,20 @@ func main() {
 }
 
 func solve(A int64) int {
-	numberOfFactors := countNumberOfFactors(A)
-	if numberOfFactors == 2 {
+	numberOfFactors := countFactors(A)
+	if isPrime(numberOfFactors) {
 		return 1
 	} else {
 		return 0
 	}
 }
 
-func countNumberOfFactors(A int64) int {
+func countFactors(A int64) int {
 	numberOfFactors := 0
 
 	var i int64
 	for i = 1; i*i <= A; i++ {
-		if A%i == 0 {
+		if isFactor(A, i) {
 			if i*i == A {
 				numberOfFactors++
 			} else {
@@ -28,4 +34,12 @@ func countNumberOfFactors(A int64) int {
 		}
 	}
 	return numberOfFactors
+}
+
+func isFactor(A int64, divisor int64) bool {
+	return A%divisor == 0
+}
+
+func isPrime(numberOfFactors int) bool {
+	return numberOfFactors == 2
 }
